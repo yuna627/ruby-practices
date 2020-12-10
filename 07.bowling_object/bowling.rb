@@ -2,25 +2,22 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :scores, :frames
-
   def initialize(score)
     @frames = []
-    @frame = []
-
     create_frames(score.split(''))
   end
 
   def create_frames(scores)
+    frame = []
+
     scores.each do |s|
-      @frame << s
-      if @frames.size < 10 && (@frame.size >= 2 || s == 'X')
-        @frames << Frame.new(@frame[0], @frame[1])
-        @frame.clear
-      elsif @frames.size == 10
-        @frames.last.add_third_shot(s)
+      frame << s
+      if @frames.size < 9 && (frame.size >= 2 || s == 'X')
+        @frames << Frame.new(frame[0], frame[1])
+        frame.clear
       end
     end
+    @frames << Frame.new(frame[0], frame[1], frame[2])
   end
 
   def calculate_point
@@ -53,21 +50,16 @@ class Game
 end
 
 class Frame
-  attr_reader :first_shot, :second_shot, :third_shot
-
-  def initialize(first_shot, second_shot = nil)
+  def initialize(first_shot, second_shot = nil, third_shot = nil)
     @first_shot = Shot.new(first_shot)
     @second_shot = second_shot.nil? ? nil : Shot.new(second_shot)
-  end
-
-  def add_third_shot(third_shot)
-    @third_shot = Shot.new(third_shot)
+    @third_shot = third_shot.nil? ? nil : Shot.new(third_shot)
   end
 
   def calculate_point
-    point = first_shot.score
-    point += second_shot.score if second_shot
-    point += third_shot.score if third_shot
+    point = @first_shot.score
+    point += @second_shot.score if @second_shot
+    point += @third_shot.score if @third_shot
     point
   end
 
@@ -89,7 +81,7 @@ class Frame
 end
 
 class Shot
-  attr_reader :shot, :score
+  attr_reader :score
 
   def initialize(score)
     @score = score == 'X' ? 10 : score.to_i

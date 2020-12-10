@@ -31,11 +31,14 @@ class GameTest < Minitest::Test
     game6 = Game.new('19100000000000000000')
     assert_equal 12, game6.calculate_point
 
-    game7 = Game.new('000000000000000000X11')
-    assert_equal 11, game7.calculate_point
+    game7 = Game.new('000000000000000000X12')
+    assert_equal 13, game7.calculate_point
 
     game8 = Game.new('000000000000000000191')
     assert_equal 11, game8.calculate_point
+
+    game9 = Game.new('00000000000000000013')
+    assert_equal 4, game9.calculate_point
   end
 end
 
@@ -46,13 +49,6 @@ class FrameTest < Minitest::Test
 
     frame2 = Frame.new('1')
     assert_equal 1, frame2.calculate_point
-  end
-
-  def test_add_third_shot
-    frame1 = Frame.new('1', '2')
-    assert_nil frame1.third_shot
-    frame1.add_third_shot('3')
-    assert_equal 3, frame1.third_shot.score
   end
 
   def test_get_shots
