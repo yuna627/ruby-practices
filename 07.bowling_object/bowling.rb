@@ -4,7 +4,7 @@
 class Game
   def initialize(score)
     @frames = []
-    create_frames(score.split(''))
+    create_frames(score.chars)
   end
 
   def create_frames(scores)
