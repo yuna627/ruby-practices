@@ -5,9 +5,7 @@ require 'minitest/autorun'
 
 class ShotTest < Minitest::Test
   def test_initialize
-    shot1 = Shot.new('X')
-    shot2 = Shot.new('3')
-    assert_equal 10, shot1.score
-    assert_equal 3, shot2.score
+    assert_equal 10, Shot.new('X').score
+    assert_equal 3, Shot.new('3').score
   end
 end

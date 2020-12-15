@@ -13,31 +13,14 @@ class GameTest < Minitest::Test
   end
 
   def test_calculate_point
-    game1 = Game.new('6390038273X9180X645')
-    assert_equal 139, game1.calculate_point, 'Normal path'
-
-    game2 = Game.new('X110000000000000000')
-    assert_equal 14, game2.calculate_point
-
-    game3 = Game.new('00XX00000000000000')
-    assert_equal 30, game3.calculate_point
-
-    game4 = Game.new('0000000000000000X12')
-    assert_equal 16, game4.calculate_point
-
-    game5 = Game.new('19X1000000000000000')
-    assert_equal 32, game5.calculate_point
-
-    game6 = Game.new('19100000000000000000')
-    assert_equal 12, game6.calculate_point
-
-    game7 = Game.new('000000000000000000X12')
-    assert_equal 13, game7.calculate_point
-
-    game8 = Game.new('000000000000000000191')
-    assert_equal 11, game8.calculate_point
-
-    game9 = Game.new('00000000000000000013')
-    assert_equal 4, game9.calculate_point
+    assert_equal 139, Game.new('6390038273X9180X645').calculate_point, 'Normal path'
+    assert_equal 14, Game.new('X110000000000000000').calculate_point, 'game2'
+    assert_equal 30, Game.new('00XX00000000000000').calculate_point, 'game3'
+    assert_equal 16, Game.new('0000000000000000X12').calculate_point,'game4'
+    assert_equal 32, Game.new('19X1000000000000000').calculate_point,'game5'
+    assert_equal 12, Game.new('19100000000000000000').calculate_point,'game6'
+    assert_equal 13, Game.new('000000000000000000X12').calculate_point,'game7'
+    assert_equal 11, Game.new('000000000000000000191').calculate_point,'game8'
+    assert_equal 4, Game.new('00000000000000000013').calculate_point,'game9'
   end
 end
