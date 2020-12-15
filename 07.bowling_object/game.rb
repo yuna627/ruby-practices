@@ -2,6 +2,9 @@
 # frozen_string_literal: true
 
 class Game
+
+  NUM_FRAMES  = 10
+
   def initialize(score)
     @frames = []
     create_frames(score.chars)
@@ -22,7 +25,7 @@ class Game
 
   def calculate_point
     point = 0
-    10.times do |frame_num|
+    NUM_FRAMES.times do |frame_num|
       point += calculate_frame_point(frame_num)
     end
     point
