@@ -5,7 +5,7 @@ require_relative 'frame'
 
 class Game
 
-  NUM_FRAMES  = 10
+  NUM_FRAMES = 10
 
   def initialize(score)
     @frames = []
